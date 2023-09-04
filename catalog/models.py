@@ -26,7 +26,6 @@ class Product(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=200, verbose_name='наименование')
     description = models.CharField(max_length=100, verbose_name='описание')
-    created_at = models.BooleanField(default=True, verbose_name='создан')
 
     def __str__(self):
         return f'{self.title} {self.description}'
