@@ -12,7 +12,7 @@
                 <h1 class="card-title pricing-card-title">{{ object.price }} ₽</h1>
                 {{ object.description|truncatechars:100 }}
                 <a type="button" class="btn btn-lg btn-block btn-outline-primary"
-                   href="{% url 'catalog:product' object.id %}">Купить</a>
+                   href="{% url 'catalog:view_product' object.pk %}">Купить</a>
             </div>
         </div>
     </div>
