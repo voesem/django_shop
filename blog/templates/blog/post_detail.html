@@ -1,0 +1,28 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card_title">
+                            {{ object.title }} ({{ object.slug }})
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            <img src="/media/{{ object.image }}">
+                        </p>
+                        <p>
+                            {{ object.body }}
+                        </p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <div>Просмотры: {{ object.views_count }}</div>
+                        <div>Дата создания: {{ object.publication_date }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
