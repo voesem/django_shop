@@ -133,3 +133,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+
+EMAIL_HOST_USER = "your@email.com"
+EMAIL_HOST_PASSWORD = "yourpassword"
+
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+SERVER_EMAIL = "your@email.com"
+DEFAULT_FROM_EMAIL = "your@email.com"
+EMAIL_ADMIN = "your@email.com"

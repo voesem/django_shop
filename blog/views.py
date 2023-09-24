@@ -1,9 +1,11 @@
+from django.core.mail import send_mail
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from pytils.translit import slugify
 
 from blog.models import Post
+from config import settings
 
 
 class PostCreateView(CreateView):
@@ -39,11 +41,11 @@ class PostUpdateView(UpdateView):
 class PostListView(ListView):
     model = Post
 
-    # def get_queryset(self, *args, **kwargs):
-    #     queryset = super().get_queryset(*args, **kwargs)
-    #     queryset = queryset.filter(is_published=True)
-    #
-    #     return queryset
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(is_published=True)
+
+        return queryset
 
 
 class PostDetailView(DetailView):
@@ -53,6 +55,15 @@ class PostDetailView(DetailView):
         self.object = super().get_object(queryset)
         self.object.views_count += 1
         self.object.save()
+
+        if self.object.views_count == 100:
+            send_mail(
+                "Уведомление",
+                "Ваш пост набрал 100 просмотров!",
+                settings.EMAIL_HOST_USER,
+                ["voesem@yandex.ru"],
+                fail_silently=False,
+            )
 
         return self.object
 
