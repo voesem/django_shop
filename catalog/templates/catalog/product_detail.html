@@ -55,7 +55,11 @@
                         </form>
                     </div>
                 </div>
-                <a class="btn btn-outline-primary" href="{% url 'catalog:update_product' object.pk %}">Редактировать</a>
+                <span class="text-muted">Автор: {{ object.owner|default:"Нет автора" }}</span>
+                <p></p>
+                {% if user.is_authenticated %}
+                    <a class="btn btn-outline-primary" href="{% url 'catalog:update_product' object.pk %}">Редактировать</a>
+                {% endif %}
             </div>
         </div>
     </div>

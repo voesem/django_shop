@@ -1,3 +1,6 @@
+import datetime
+
+from django.conf import settings
 from django.db import models
 
 # Create your models here.
@@ -11,8 +14,9 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/', verbose_name='изображение (превью)', **NULLABLE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='категория')
     price = models.IntegerField(verbose_name='цена за покупку')
-    creation_date = models.DateField(verbose_name='дата создания')
-    last_modified_date = models.DateField(verbose_name='дата последнего изменения')
+    creation_date = models.DateField(verbose_name='дата создания', default=datetime.date.today)
+    last_modified_date = models.DateField(verbose_name='дата последнего изменения', default=datetime.date.today)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='владелец', **NULLABLE)
 
     def __str__(self):
         return f'{self.title}'

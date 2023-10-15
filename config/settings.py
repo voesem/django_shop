@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'catalog',
     'blog',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -137,12 +138,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 
-EMAIL_HOST_USER = "your@email.com"
-EMAIL_HOST_PASSWORD = "yourpassword"
+EMAIL_HOST_USER = "voesem@yandex.ru"
+EMAIL_HOST_PASSWORD = "bdufadkzawzadtnk"
 
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
-SERVER_EMAIL = "your@email.com"
-DEFAULT_FROM_EMAIL = "your@email.com"
-EMAIL_ADMIN = "your@email.com"
+SERVER_EMAIL = "voesem@yandex.ru"
+DEFAULT_FROM_EMAIL = "voesem@yandex.ru"
+EMAIL_ADMIN = "voesem@yandex.ru"
+
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
