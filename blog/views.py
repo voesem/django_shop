@@ -1,11 +1,9 @@
-from django.core.mail import send_mail
-from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from pytils.translit import slugify
 
 from blog.models import Post
-from config import settings
+from blog.services import send_notification_email_message
 
 
 class PostCreateView(CreateView):
@@ -57,13 +55,7 @@ class PostDetailView(DetailView):
         self.object.save()
 
         if self.object.views_count == 100:
-            send_mail(
-                "Уведомление",
-                "Ваш пост набрал 100 просмотров!",
-                settings.EMAIL_HOST_USER,
-                ["voesem@yandex.ru"],
-                fail_silently=False,
-            )
+            send_notification_email_message()
 
         return self.object
 
