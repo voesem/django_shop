@@ -10,10 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -82,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django_shop',
         'USER': 'postgres',
-        'PASSWORD': '123'
+        'PASSWORD': os.getenv('DATABASE_PASSWORD')
     }
 }
 
@@ -138,15 +142,15 @@ MEDIA_ROOT = BASE_DIR / 'media'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 
-EMAIL_HOST_USER = "voesem@yandex.ru"
-EMAIL_HOST_PASSWORD = "bdufadkzawzadtnk"
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
-SERVER_EMAIL = "voesem@yandex.ru"
-DEFAULT_FROM_EMAIL = "voesem@yandex.ru"
-EMAIL_ADMIN = "voesem@yandex.ru"
+SERVER_EMAIL = os.getenv('EMAIL_HOST_USER')
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
+EMAIL_ADMIN = os.getenv('EMAIL_HOST_USER')
 
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'
