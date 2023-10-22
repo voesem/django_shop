@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Version
+from catalog.services import get_cached_categories_for_product
 
 
 class ProductListView(ListView):
@@ -13,6 +14,12 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+
+        context_data['categories'] = get_cached_categories_for_product(self.object.pk)
+        return context_data
 
 
 class ProductCreateView(CreateView):
