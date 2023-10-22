@@ -16,16 +16,7 @@ from django.views.generic import CreateView, UpdateView
 from config import settings
 from users.forms import UserRegisterForm, UserProfileForm, UserAuthenticationForm
 from users.models import User
-
-
-def send_verify_email_message(verification_url, recipient_email):
-    send_mail(
-        "Код подтверждения",
-        f"Пройдите по ссылке, чтобы активировать адрес электронной почты: {verification_url}",
-        settings.EMAIL_HOST_USER,
-        [recipient_email],
-        fail_silently=False,
-    )
+from users.services import send_verify_email_message
 
 
 class RegisterView(CreateView):
