@@ -11,6 +11,6 @@ urlpatterns = [
     path('', ProductListView.as_view(), name='home'),
     path('contacts/', views.contacts, name='contacts'),
     path('create/', never_cache(ProductCreateView.as_view()), name='create_product'),
-    path('product/<int:pk>/', ProductDetailView.as_view(), name='view_product'),
+    path('product/<int:pk>/', never_cache(ProductDetailView.as_view()), name='view_product'),
     path('update/<int:pk>/', never_cache(ProductUpdateView.as_view()), name='update_product')
 ]
